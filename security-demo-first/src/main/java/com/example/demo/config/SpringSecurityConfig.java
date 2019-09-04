@@ -25,8 +25,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/product/update").hasAuthority("PRODUCT_UPDATE")
             .antMatchers("/product/list").hasAuthority("PRODUCT_LIST")
             .antMatchers("/product/delete").hasAuthority("PRODUCT_DELETE")
-            .antMatchers("/**")
-            .fullyAuthenticated()
+            .anyRequest().authenticated()
             .and()
             .formLogin().failureForwardUrl("/index/error");
     }
