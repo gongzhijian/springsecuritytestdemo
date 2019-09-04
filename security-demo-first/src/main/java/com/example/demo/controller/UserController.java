@@ -12,5 +12,9 @@ public class UserController {
         return new ModelAndView("index");
     }
 
+    @RequestMapping("index/error")
+    public ModelAndView getIndexError(){
+        return new ModelAndView("error");
+    }
 
 }

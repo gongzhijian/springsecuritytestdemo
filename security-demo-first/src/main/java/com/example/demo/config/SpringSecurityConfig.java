@@ -14,16 +14,20 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().passwordEncoder(new MyPasswordEncorder()).withUser("user")
-                .password("123456").authorities("ROLE_ADD");
+                .password("123456").authorities("PRODUCT_ADD");
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+            .antMatchers("/product/add").hasAuthority("PRODUCT_ADD")
+            .antMatchers("/product/update").hasAuthority("PRODUCT_UPDATE")
+            .antMatchers("/product/list").hasAuthority("PRODUCT_LIST")
+            .antMatchers("/product/delete").hasAuthority("PRODUCT_DELETE")
             .antMatchers("/**")
             .fullyAuthenticated()
             .and()
-            .httpBasic();
+            .formLogin().failureForwardUrl("/index/error");
     }
 }
