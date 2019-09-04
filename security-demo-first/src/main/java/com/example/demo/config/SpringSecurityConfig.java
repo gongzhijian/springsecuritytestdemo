@@ -13,14 +13,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("123456").authorities("ROLE_ADD");
+        auth.inMemoryAuthentication().passwordEncoder(new MyPasswordEncorder()).withUser("user")
+                .password("123456").authorities("ROLE_ADD");
+
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/*.html")
-            .permitAll()
             .antMatchers("/**")
             .fullyAuthenticated()
             .and()
