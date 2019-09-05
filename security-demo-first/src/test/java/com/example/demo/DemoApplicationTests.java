@@ -22,9 +22,8 @@ public class DemoApplicationTests {
 
     @Test
     public void contextLoads() {
-        log.info("test");
         List<User> users = userMapper.selectAll();
-        log.info("数据：{}",users);
+        System.out.println(users);
     }
 
 }
