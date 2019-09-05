@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -21,6 +23,7 @@ import javax.sql.DataSource;
  **/
 @Configuration
 @MapperScan(basePackages = "com.example.demo.domain.alpha", sqlSessionFactoryRef = "alphaSqlSessionFactory")
+@ComponentScan(basePackages = "com.example.demo.dao.alpha")
 public class DataSourceConfigFirst {
 
     // 将这个对象放入Spring容器中
@@ -55,4 +58,12 @@ public class DataSourceConfigFirst {
             @Qualifier("alphaSqlSessionFactory") SqlSessionFactory alphaSessionfactory) {
         return new SqlSessionTemplate(alphaSessionfactory);
     }
+
+
+
+    @Bean
+    public DataSourceTransactionManager dataSourceTransactionManager(@Qualifier("alphaDataSource")DataSource alphaDataSource) {
+        return new DataSourceTransactionManager(alphaDataSource);
+    }
+
 }
