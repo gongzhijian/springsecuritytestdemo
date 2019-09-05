@@ -16,34 +16,4 @@
     -->
     id, name, money, createdate
   </sql>
-  <resultMap id="BaseResultMap" type="com.example.demo.domain.alpha.User">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="money" jdbcType="DECIMAL" property="money" />
-    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    id, name, money, createdate
-  </sql>
-  <resultMap id="BaseResultMap" type="com.example.demo.domain.alpha.User">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="money" jdbcType="DECIMAL" property="money" />
-    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    id, name, money, createdate
-  </sql>
 </mapper>

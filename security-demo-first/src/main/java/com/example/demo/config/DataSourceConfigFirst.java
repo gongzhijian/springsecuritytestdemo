@@ -43,7 +43,7 @@ public class DataSourceConfigFirst {
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(
                 // 设置mybatis的xml所在位置
-                new PathMatchingResourcePatternResolver().getResources("classpath*:mapping/alpha/*.xml"));
+                new PathMatchingResourcePatternResolver().getResources("classpath:mapping/alpha/*.xml"));
         return factoryBean.getObject();
 
     }
