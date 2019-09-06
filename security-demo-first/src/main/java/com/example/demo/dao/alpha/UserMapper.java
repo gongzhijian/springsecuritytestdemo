@@ -1,9 +1,9 @@
 package com.example.demo.dao.alpha;
 
 import com.example.demo.domain.alpha.User;
-import tk.mybatis.mapper.common.Mapper;
+import org.apache.ibatis.annotations.Mapper;
+import tk.mybatis.mapper.common.BaseMapper;
 
-
-@org.apache.ibatis.annotations.Mapper
-public interface UserMapper extends Mapper<User> {
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
 }

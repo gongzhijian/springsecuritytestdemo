@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import com.example.demo.dao.alpha.UserMapper;
+import com.example.demo.dao.beta.StudentMapper;
 import com.example.demo.domain.alpha.User;
+import com.example.demo.domain.beta.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.sql.DataSourceDefinitions;
 import java.util.List;
 
 @Slf4j
@@ -24,9 +27,11 @@ public class DemoApplicationTests {
     @Autowired(required = false)
     private UserMapper userMapper;
 
+    @Autowired(required = false)
+    private StudentMapper studentMapper;
 
     @Test
-    public void contextLoads() {
+    public void contextLoadsAlpha() {
         List<User> users = userMapper.selectAll();
         logger.info("用户的量为：{}",users.size());
         User user = new User();
@@ -34,6 +39,14 @@ public class DemoApplicationTests {
         User selectOne = userMapper.selectOne(user);
         logger.info("用户id为1的人是：{}", selectOne);
     }
+
+    @Test
+    public void contextLoadsBeta() {
+        logger.info("正在查询学生人数");
+        List<Student> students = studentMapper.selectAll();
+        logger.info("学生人数为：{}",students.size());
+    }
+
 
     @Test
     @Transactional

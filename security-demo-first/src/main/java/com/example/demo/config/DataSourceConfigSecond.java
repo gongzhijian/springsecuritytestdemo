@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -21,49 +22,44 @@ import javax.sql.DataSource;
  * @desc 第一个数据库配置
  **/
 @Configuration
-//@MapperScan(basePackages = "com.example.demo.dao.alpha.*", sqlSessionFactoryRef = "alphaSqlSessionFactory")
-@MapperScan(basePackages = "com.example.demo.dao.alpha.*", sqlSessionTemplateRef = "test1SqlSessionTemplate")
-//@ComponentScan(basePackages = "com.example.demo.dao.alpha")  com.example.demo.domain.alpha(上面的)
-public class DataSourceConfigFirst {
+//@MapperScan(basePackages = "com.example.demo.dao.beta.StudentMapper", sqlSessionFactoryRef = "betaSqlSessionFactory")
+@MapperScan(basePackages = "com.example.demo.dao.beta.*", sqlSessionTemplateRef = "test2SqlSessionTemplate")
+public class DataSourceConfigSecond {
 
     // 将这个对象放入Spring容器中
-    @Bean(name = "alphaDataSource")
+    @Bean(name = "betaDataSource")
     // 表示这个数据源是默认数据源
-    @Primary
     // 读取application.properties中的配置参数映射成为一个对象
     // prefix表示参数的前缀
-    @ConfigurationProperties(prefix = "spring.datasource.alpha")
+    @ConfigurationProperties(prefix = "spring.datasource.beta")
     public DataSource getDateSourceAlpha() {
         return DataSourceBuilder.create().build();
     }
 
 
 
-    @Bean(name = "alphaSqlSessionFactory")
-    @Primary
-    public SqlSessionFactory alphaSqlSessionFactory(@Qualifier("alphaDataSource")DataSource dataSource) throws Exception{
+    @Bean(name = "betaSqlSessionFactory")
+    public SqlSessionFactory betaSqlSessionFactory(@Qualifier("betaDataSource")DataSource dataSource) throws Exception{
         SqlSessionFactoryBean factoryBean=new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(
                 // 设置mybatis的xml所在位置
-                new PathMatchingResourcePatternResolver().getResources("classpath:mapping/alpha/*.xml"));
+                new PathMatchingResourcePatternResolver().getResources("classpath:mapping/beta/*.xml"));
         return factoryBean.getObject();
 
     }
 
-    @Bean("test1SqlSessionTemplate")
-    // 表示这个数据源是默认数据源
-    @Primary
-    public SqlSessionTemplate test1sqlsessiontemplate(
-            @Qualifier("alphaSqlSessionFactory") SqlSessionFactory alphaSessionfactory) {
-        return new SqlSessionTemplate(alphaSessionfactory);
+    @Bean("test2SqlSessionTemplate")
+    public SqlSessionTemplate test2sqlsessiontemplate(
+            @Qualifier("betaSqlSessionFactory") SqlSessionFactory betaSessionfactory) {
+        return new SqlSessionTemplate(betaSessionfactory);
     }
 
 
 
-    @Bean(name = "alphaTransactionManager")
-    public DataSourceTransactionManager dataSourceTransactionManagerAlpha(@Qualifier("alphaDataSource")DataSource alphaDataSource) {
-        return new DataSourceTransactionManager(alphaDataSource);
+    @Bean(name = "betaTransactionManager")
+    public DataSourceTransactionManager dataSourceTransactionManagerBeta(@Qualifier("betaDataSource")DataSource betaDataSource) {
+        return new DataSourceTransactionManager(betaDataSource);
     }
 
 }
