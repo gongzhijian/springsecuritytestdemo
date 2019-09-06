@@ -3,27 +3,24 @@ package com.example.demo.config;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import tk.mybatis.spring.annotation.MapperScan;
 
 import javax.sql.DataSource;
 
 /**
  * @author GEEX616
- * @create 2019-09-04 15:52
+ * @create 2019-09-04 15:52  basePackages:接口的包地址
  * @desc 第一个数据库配置
  **/
 @Configuration
-//@MapperScan(basePackages = "com.example.demo.dao.beta.StudentMapper", sqlSessionFactoryRef = "betaSqlSessionFactory")
-@MapperScan(basePackages = "com.example.demo.dao.beta.*", sqlSessionTemplateRef = "test2SqlSessionTemplate")
+@MapperScan(basePackages = "com.example.demo.dao.beta", sqlSessionTemplateRef = "test2SqlSessionTemplate")
 public class DataSourceConfigSecond {
 
     // 将这个对象放入Spring容器中
