@@ -11,16 +11,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
+    /*@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(new MyPasswordEncorder()).withUser("user")
-                .password("123456").authorities("PRODUCT_ADD");
+        *//*auth.inMemoryAuthentication().passwordEncoder(new MyPasswordEncorder()).withUser("user")
+                .password("123456").authorities("PRODUCT_ADD");*//*
 
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+            .antMatchers("/product/index").permitAll()
             .antMatchers("/product/add").hasAuthority("PRODUCT_ADD")
             .antMatchers("/product/update").hasAuthority("PRODUCT_UPDATE")
             .antMatchers("/product/list").hasAuthority("PRODUCT_LIST")

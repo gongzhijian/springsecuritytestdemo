@@ -3,7 +3,7 @@
 
 <generatorConfiguration>
     <!--配置文件地址-->
-    <properties resource="dataSource/dataSourceBeta.properties"/>
+    <properties resource="dataSource/dataSourceAlpha.properties"/>
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <!-- 接入tkmybatis的插件 -->
@@ -21,10 +21,10 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- Mysql数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-        <jdbcConnection driverClass="${spring.datasource.beta.driver-class-name}"
-                        connectionURL="${spring.datasource.beta.url}"
-                        userId="${spring.datasource.beta.username}"
-                        password="${spring.datasource.beta.password}">
+        <jdbcConnection driverClass="${spring.datasource.alpha.driver-class-name}"
+                        connectionURL="${spring.datasource.alpha.url}"
+                        userId="${spring.datasource.alpha.username}"
+                        password="${spring.datasource.alpha.password}">
         </jdbcConnection>
         <!-- Oracle数据库
             <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
@@ -61,7 +61,7 @@
         </javaClientGenerator>
 
         <!-- 指定数据表 -->
-        <table schema="${xml.path}" tableName="student" enableCountByExample="false"
+        <table schema="${xml.path}" tableName="sys_permission" enableCountByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false" enableSelectByExample="false" >
             <property name="useActualColumnNames" value="false" />

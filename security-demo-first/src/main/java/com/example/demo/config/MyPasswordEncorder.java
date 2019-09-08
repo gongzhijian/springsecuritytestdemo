@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @create 2019-09-04 11:14
  * @desc
  **/
+@Configuration(value = "myPasswordEncorder")
 public class MyPasswordEncorder implements PasswordEncoder {
 
     @Override

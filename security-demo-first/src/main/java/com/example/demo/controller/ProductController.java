@@ -38,6 +38,12 @@ public class ProductController {
         return new  ModelAndView("delete");
     }
 
+    @RequestMapping("/index")
+    public ModelAndView index(){
+        return new  ModelAndView("index");
+    }
+
+
 
     @RequestMapping("/test")
     public Object test(){
