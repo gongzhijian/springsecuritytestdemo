@@ -1,8 +1,6 @@
 package com.gong.securitydemosecond.Enums;
 
-import lombok.Getter;
 
-@Getter
 public enum ResultEnum {
     SUCCESS(0, "成功"),
     UNAUTHORIZED(800, "访问的服务需要身份认证，请引导用户到登录页"),
@@ -14,6 +12,22 @@ public enum ResultEnum {
 
     ResultEnum(Integer code, String message) {
         this.code = code;
+        this.message = message;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
         this.message = message;
     }
 }
