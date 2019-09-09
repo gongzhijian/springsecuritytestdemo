@@ -1,0 +1,13 @@
+package com.gong.securitydemosecond;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SecurityDemoSecondApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SecurityDemoSecondApplication.class, args);
+	}
+
+}
