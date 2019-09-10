@@ -1,0 +1,2 @@
+create database dev
+insert into persistent_logins (username, series, token, last_used) 
